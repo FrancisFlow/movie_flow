@@ -4,8 +4,8 @@ from app import app
 
 @app.route('/')
 def index():
-
-    return render_template('index.html')
+    title= 'The days you will never miss, Movies Flow'
+    return render_template('index.html', title=title)
 
 @app.route('/movies/<movie_id>')
 def movies(movie_id):
