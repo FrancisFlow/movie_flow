@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +14,46 @@
     {% else %}
     <title>This is the Movie Flow title, genius</title>
     {% endif %}
+
+    <!-- style-block -->
+    {% block styles %}
+         {{ super() }}
+         <link rel="stylesheet" href="{{url_for('static', filename='css/index.css') }}">
+
+    {% endblock %}
 </head>
+
 <body>
+    {% block content %}
+
+
+<div class="container">
+    <form>
+        <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
+        <input type="submit"  value="Submit" class="btn btn-default">
+    </form>
+
+</div>
+
+    <h1>How are you this new year?</h1>
+       <h3>I'm feeling vibes on vibes. I'm a ticking dynamite.</h3>
     
+    <h3>Popular Movies</h3>
+    <ul>
+        {% for popular_movies in popular %}
+        <li>{{ popular_movies.title }}</li>
+        <li> {{ popular_movies.id }} </li>
+
+        {% endfor %}
+
+    </ul>
+    
+    <h3>  Upcoming movies </h3>
+    <ul>
+     {{macro.displayMovieList(upcoming)}}
+    </ul>
+
+    {% endblock %}
+
 </body>
 </html>
